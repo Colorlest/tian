@@ -13,12 +13,6 @@ on:
   schedule:
   # 定时任务，在每天的24点 18点推送签到信息到邮箱
     - cron:  0 16 * * * 
-      # 定时器更改时间
-      # https://tool.lu/crontab/
-      # https://datetime360.com/cn/utc-cst-china-time/ #UTC时间 国际协调时间+8=北京时间
-      # https://docs.github.com/cn/actions/using-workflows/workflow-syntax-for-github-actions#onschedule 官方参考
-  #watch:
-  #    types: started   
 
 jobs:
 #将工作流程中运行的所有作业组合在一起
@@ -46,12 +40,7 @@ jobs:
        # if [ -f requirements.txt ]; then pip install -r requirements.txt; fi 
     - name: Checkin
       run: |
-        python3 ./g1.py 
+        python3 ./3.py 
   env: 
-  #设置secrets的环境变量
-    COOKIE1: ${{ secrets.COOKIE1 }}
-    COOKIE2: ${{ secrets.COOKIE2 }}
-    #SMTP: ${{ secrets.SMTP }}
-    MAIL1: ${{ secrets.MAIL1 }}
-    MAIL2: ${{ secrets.MAIL2 }}
+
 
