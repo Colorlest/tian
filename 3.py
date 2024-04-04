@@ -8,17 +8,8 @@ import re
 weather_api_url = 'https://v2.api-m.com/api/weather?city=%E6%B2%B3%E5%8D%97%E7%9C%81%E9%A9%BB%E9%A9%AC%E5%BA%97%E5%B8%82%E6%B1%9D%E5%8D%97%E5%8E%BF'
 # 设置每日一言获取的API链接
 quote_api_url = 'https://api.mu-jie.cc/stray-birds/range?type=json'
-# 设置包含收件人邮箱地址的文本文件的URL
-recipient_url = ''
-
-# 获取收件人邮箱地址
-recipient_response = requests.get(recipient_url)
-
-if recipient_response.status_code == 200:
-    recipient_emails = recipient_response.text.strip().split('\n')  # 按行切割邮箱地址
-else:
-    print(f"获取收件人邮箱失败，错误代码: {recipient_response.status_code}, 错误信息: {recipient_response.text}")
-    exit()
+recipient_email="3459003689@qq.com"
+recipient_email={recipient_email}
 
 # 获取天气信息
 weather_response = requests.get(weather_api_url)
@@ -39,8 +30,8 @@ if weather_response.status_code == 200:
         # 设置邮件服务器和邮箱信息
         smtp_server = 'smtp.qq.com'
         smtp_port = 587
-        sender_email = ''  # 替换为你的 QQ 邮箱地址
-        sender_password = ''  # 替换为你的 QQ 邮箱授权码
+        sender_email = '726991736@qq.com'  # 替换为你的 QQ 邮箱地址
+        sender_password = 'pgbufezaypwcbfeh'  # 替换为你的 QQ 邮箱授权码
 
         # 构建邮件内容
         email_content = f"城市: {city}\n\n天气预报:\n"
@@ -73,7 +64,7 @@ if weather_response.status_code == 200:
         message['From'] = sender_email
 
         # 遍历收件人列表，发送邮件
-        for recipient_email in recipient_emails:
+        for recipient_email in recipient_email:
             # 使用正则表达式检查邮箱地址是否合法
             if re.match(r"[^@]+@[^@]+\.[^@]+", recipient_email.strip()):
                 message['To'] = recipient_email.strip()  # 移除文本两端的空格和换行符
